@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  login page
+{% endblock %}
+
+
+{% block content %}
+  <h1>Login</h1>
+  <hr>
+  <form class="" method="post">
+    {% csrf_token %}
+    {{ form | crispy}}
+    <input type="submit" name="" value="Login" class="btn btn-outline-success">
+  </form>
+{% endblock %}
