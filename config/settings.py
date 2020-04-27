@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # third party apps
     "crispy_forms",
     # installed apps
+    "core",
     "blog",
     "users",
 ]
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middlewares.QueryCountDebugMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -127,26 +129,30 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-import sys
-LOGGING = {
-    'version': 1,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-        }
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'INFO',
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-            # 'handlers': ['console'],
-        },
-    },
-}
+# import sys
+# LOGGING = {
+#     'version': 1,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'stream': sys.stdout,
+#         }
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'INFO',
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'level': 'DEBUG',
+#             # 'handlers': ['console'],
+#         },
+#     },
+# }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # AUTH_USER_MODEL = 'users.User'
+MIGRATION_MODULES = {
+    "blog": "core.migrations.blog",
+    "users": "core.migrations.users"
+}

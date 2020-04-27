@@ -43,5 +43,5 @@ class Command(BaseCommand):
         total = users.count()
         superuser_count = users.filter(is_superuser=True).count()
 
-        self.stdout.write(f"\n{'-'*30}\nCreated {count} user")
+        self.stdout.write(f"\n{'-'*80}\nCreated {count} user")
         self.stdout.write(f"Total {total} user (superuser: {superuser_count}, staff: {total - superuser_count})")

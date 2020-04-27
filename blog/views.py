@@ -16,7 +16,7 @@ def index(request):
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.select_related("author").all()
     context = {
         "posts": posts,
     }
@@ -24,12 +24,12 @@ def post_list(request):
 
 
 def post_detail(request, slug, id):
-    # try:
-    #     post = Post.objects.get(slug=slug, id=id)
-    # except Post.DoesNotExist:
-    #     raise Http404("Post does not exist")
-    # or using get_object_or_404
-    post = get_object_or_404(Post, id=id, slug=slug)
+    try:
+        post = Post.objects.select_related("author").get(slug=slug, id=id)
+    except Post.DoesNotExist:
+        raise Http404("Post does not exist")
+    # # or using get_object_or_404
+    # post = get_object_or_404(Post, id=id, slug=slug)
     context = {
         "post": post,
     }

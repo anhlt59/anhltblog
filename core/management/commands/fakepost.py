@@ -51,5 +51,5 @@ class Command(BaseCommand):
         total = posts.count()
         draft_count = posts.filter(status="draft").count()
 
-        self.stdout.write(f"\n{'-'*30}\nCreated {count} post")
+        self.stdout.write(f"\n{'-'*80}\nCreated {count} post")
         self.stdout.write(f"Total {total} post (draft: {draft_count}, published: {total - draft_count})")
