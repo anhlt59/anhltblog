@@ -31,5 +31,5 @@ class QueryCountDebugMiddleware(object):
             print(f"\n{index}: ({query_time}) {sql_query}")
 
         print(f"\n{current_url}: {request.get_raw_uri()}")
-        print(f"{len(connection.queries)} queries run, total {total_time} seconds")
+        print(f"{len(connection.queries)} queries run, total {total_time} seconds\n")
         return response
