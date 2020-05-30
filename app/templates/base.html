@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    {% block meta %}
+        <meta charset="utf-8">
+    {% endblock %}
+
+    <title>
+        {% block title %}
+            {% if title %}
+                {{ title }}
+            {% else %}
+                Django Blog
+            {% endif %}
+        {% endblock %}
+    </title>
+
+    {% block css %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    {% endblock %}
+</head>
+
+<body>
+<div class="container">
+    {% block nvbar %}
+        {% include "navbar.html" %}
+    {% endblock %}
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {% if messages %}
+        <script>
+            toastr.options.timeOut = 8000;
+            toastr.options.closeButton = true;
+            toastr.options.newestOnTop = true;
+            {% for message in messages %}
+                toastr.{{ message.tags }}("{{ message }}");
+            {% endfor %}
+        </script>
+    {% endif %}
+{% endblock %}
+</body>
+</html>

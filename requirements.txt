@@ -1,0 +1,10 @@
+Django
+django-extensions
+django-environ
+django-filter
+django-graphql-jwt
+graphene-django
+django-graphiql
+Faker
+django-crispy-forms
+django-guardian
