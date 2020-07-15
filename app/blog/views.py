@@ -49,7 +49,6 @@ class MypageListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         author = self.request.user.username
         queryset = Post.objects.filter(author__username=author).select_related("author")
-        # message info your post
         # count = queryset.count()
         # if count:
         #     messages.success(self.request, f"You have {count} post")
